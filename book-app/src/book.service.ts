@@ -6,7 +6,9 @@ import * as fs from 'fs';
 @Injectable()
 export class BookService {
   getBooks(): BookDto {
-    const bookDataPath: string = path.join(__dirname, 'src/data/books/books.json');
+    const bookDataPath: string = path.join(__dirname, '../src/data/books/books.json');
+
+    console.log('directory',  bookDataPath)
 
     const dataBookFile = fs.readFileSync(bookDataPath, 'utf-8')
 

@@ -1,0 +1,48 @@
+{
+    "books": [
+      {
+        "title": "The Hobbit",
+        "author": "J.R.R. Tolkien",
+        "publication_year": 1937,
+        "genre": "Fantasy"
+      },
+      {
+        "title": "Moby-Dick",
+        "author": "Herman Melville",
+        "publication_year": 1851,
+        "genre": "Adventure"
+      },
+      {
+        "title": "The Catch-22",
+        "author": "Joseph Heller",
+        "publication_year": 1961,
+        "genre": "Satire"
+      },
+      {
+        "title": "Brave New World",
+        "author": "Aldous Huxley",
+        "publication_year": 1932,
+        "genre": "Dystopian"
+      },
+      {
+        "title": "The Alchemist",
+        "author": "Paulo Coelho",
+        "publication_year": 1988,
+        "genre": "Fiction"
+      },
+      {
+        "title": "The Great Gatsby",
+        "author": "F. Scott Fitzgerald",
+        "publication_year": 1925,
+        "genre": "Classic",
+        "ISBN": "9780743273565"
+      },
+      {
+        "title": "Pride and Prejudice",
+        "author": "Jane Austen",
+        "publication_year": 1813,
+        "genre": "Romance",
+        "ISBN": "9780141439518"
+      }
+    ]
+  }

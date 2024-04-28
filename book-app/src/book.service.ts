@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { BookDto } from './dto/book-dto';
+import { BookDto } from './dto/book.dto';
 import * as path from 'path';
 import * as fs from 'fs';
 

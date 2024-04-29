@@ -7,19 +7,28 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class AppService {
 
-  private client:  ClientProxy;
+  private ThirdPartyAPI:  ClientProxy;
+  private DataBase: ClientProxy;
 
   constructor() {
-    this.client = ClientProxyFactory.create({
+    this.ThirdPartyAPI = ClientProxyFactory.create({
       transport: Transport.TCP,
       options: {
         host: '127.0.0.1',
         port: 3001
       },
-    });
+    }),
+    this.DataBase = ClientProxyFactory.create({
+      transport: Transport.TCP,
+      options: {
+        host: '127.0.0.1',
+        port: 5000
+      },
+    })
+    ;
   }
 
   getAllBooks(): Observable<BookDto[]> {
-    return this.client.send<BookDto[], BookDto[]>('getBooks', {} as BookDto[])
+    return this.ThirdPartyAPI.send<BookDto[], BookDto[]>('getBooks', {} as BookDto[])
   }
 }

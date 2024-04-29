@@ -1,6 +1,9 @@
 import { NestFactory } from '@nestjs/core';
 import { Transport, MicroserviceOptions } from '@nestjs/microservices';
 import { AppModule } from './app.module';
+import { Logger } from '@nestjs/common';
+
+const logger = new Logger('Third-Party-API')
 
 async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
@@ -14,6 +17,7 @@ async function bootstrap() {
     }
   )
 
+  logger.log('Third-Party-API Microservice is Listening')
   await app.listen();
 }
 bootstrap();

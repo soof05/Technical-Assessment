@@ -8,7 +8,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello():Observable<BookDto[]> {
+  getHello(): Promise<void> {
     return this.appService.getAllBooks();
   }
 }

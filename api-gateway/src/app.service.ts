@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ClientProxyFactory, ClientProxy, Transport } from '@nestjs/microservices';
 import { BookDto } from './dto/book.dto';
-import { Observable } from 'rxjs';
+import { Observable, firstValueFrom } from 'rxjs';
 
 
 @Injectable()
@@ -28,7 +28,15 @@ export class AppService {
     ;
   }
 
-  getAllBooks(): Observable<BookDto[]> {
-    return this.ThirdPartyAPI.send<BookDto[], BookDto[]>('getBooks', {} as BookDto[])
+  async getAllBooks(): Promise<void> {
+    const readyBooks = await firstValueFrom(this.ThirdPartyAPI.send<BookDto[], BookDto[]>('getBooks', {} as BookDto[]));
+
+    readyBooks.forEach((book) => {
+      console.log(book);
+      this.DataBase.send<BookDto, BookDto>('createBook', book).subscribe(result => console.log(result));
+    })
+
+    // return this.ThirdPartyAPI.send<BookDto[], BookDto[]>('getBooks', {} as BookDto[])
+    return ;
   }
 }

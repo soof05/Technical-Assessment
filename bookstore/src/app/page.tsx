@@ -1,10 +1,28 @@
-import BooksLists from "./books/BooksLists";
+import BooksLists from "./BooksLists";
+import { Book } from './book.interface';
 
-export default function Home() {
+async function getBooks(): Promise<Book[]> {
+
+  return fetch('http://localhost:3000')
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(res.statusText)
+      }
+      return res.json() as Promise<Book[]>
+    })
+}
+
+
+export default async function Home() {
+  const books = await getBooks();
   return (
     <main>
       <h2>BookSotre</h2>
-      <BooksLists/>
+      <>
+        {books.map((book) => {
+          <p>{book.genre}</p>
+        })}
+      </>
     </main>
   );
 }

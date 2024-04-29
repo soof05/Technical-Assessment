@@ -11,12 +11,14 @@ export class BookService {
     return await this.booksrepository.find({});
   }
 
-  async createBook(book: BookDto): Promise<Book> {
-    return this.booksrepository.create({
-      title: book.title,
-      author: book.author,
-      publication_year: book.publication_year,
-      genre: book.genre,
-    });
+  async createManyBooks(books: BookDto[]): Promise<Book[]> {
+    // return await this.booksrepository.create({
+    //   title: book.title,
+    //   author: book.author,
+    //   publication_year: book.publication_year,
+    //   genre: book.genre,
+    // });
+
+    return await this.booksrepository.createBooks(books);
   }
 }

@@ -3,7 +3,7 @@ import {BookService } from './book.service';
 import { BookDto } from './dto/book.dto';
 import { MessagePattern } from '@nestjs/microservices';
 
-@Controller()
+@Controller('books')
 export class BookController {
   constructor(private readonly bookService: BookService) {}
 

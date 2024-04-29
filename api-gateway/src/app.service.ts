@@ -28,7 +28,7 @@ export class AppService {
     ;
   }
 
-  async getAllBooks(): Promise<void> {
+  async getAllBooks(): Promise<BookDto[]> {
     const readyBooks = await firstValueFrom(this.ThirdPartyAPI.send<BookDto[], BookDto[]>('getBooks', {} as BookDto[]));
 
     readyBooks.forEach((book) => {
@@ -37,6 +37,6 @@ export class AppService {
     })
 
     // return this.ThirdPartyAPI.send<BookDto[], BookDto[]>('getBooks', {} as BookDto[])
-    return ;
+    return readyBooks;
   }
 }

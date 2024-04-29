@@ -11,4 +11,9 @@ export class BookController {
   async getAllBooks(): Promise<BookDto> {
     return this.bookService.getBooks();
   }
+
+  @MessagePattern('getBookPath')
+  async getPathBook() : Promise<string> {
+    return this.bookService.getBooksPath();
+  }
 }

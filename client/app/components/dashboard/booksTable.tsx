@@ -1,6 +1,8 @@
 import { fetchBooks } from "@/lib/data";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
 import { Book } from "@/lib/definitions";
+import { Button } from "../ui/button";
+
 
 export default async function BookTable() {
   const books : Book[] = await fetchBooks();
@@ -10,7 +12,7 @@ export default async function BookTable() {
   }
 
   return (
-    <>
+    <div className="flex flex-col items-center justify-center gap-5 w-full">
       <Table className="w-full overflow-auto">
         <TableHeader>
           <TableRow>
@@ -33,6 +35,7 @@ export default async function BookTable() {
           ))}
         </TableBody>
       </Table>
-    </>
+      <Button>show more</Button>
+    </div>
   );
 }

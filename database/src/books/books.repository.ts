@@ -11,11 +11,8 @@ export class BooksRepository {
     return await this.bookModel.find(booksFilterQuery);
   }
 
-  async createBooks(books: Book[]): Promise<Book[]> {
-    // const newBook = new this.bookModel(book);
-    // return newBook.save();
-    const createdBooks = await this.bookModel.insertMany(books);
-
-    return createdBooks;
+  async createBook(book: Book): Promise<Book> {
+    const newBook = new this.bookModel(book);
+    return newBook.save();
   }
 }

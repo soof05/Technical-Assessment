@@ -10,13 +10,11 @@ export class BooksController {
 
     @MessagePattern('fetchingBooks')
     async getBooks(): Promise<BookDto[]> {
-        console.log('helllloo')
         return await this.bookService.getBooks()
     }
 
     @EventPattern('createBook')
     async createBook(book: BookDto) : Promise<BookDto> {
-        console.log('hello')
         return await this.bookService.createBook(book);
     } 
 }

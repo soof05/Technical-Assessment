@@ -35,7 +35,6 @@ export default async function BookTable() {
           ))}
         </TableBody>
       </Table>
-      <Button>show more</Button>
     </div>
   );
 }

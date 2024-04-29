@@ -8,6 +8,6 @@ export async function fetchBooks() {
         const data : Book[] = await response.json();
         return data;
     } catch (error) {
-        throw new Error('Failed to fetch card data.');
+        throw new Error('Failed to fetch book data.');
     }
 }

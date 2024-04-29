@@ -4,6 +4,7 @@ import { BookDto } from './dto/book.dto';
 import { Observable, firstValueFrom } from 'rxjs';
 import * as path from 'path';
 import * as fs from 'fs';
+import { Cron, CronExpression } from '@nestjs/schedule';
 
 
 @Injectable()
@@ -33,31 +34,12 @@ export class AppService {
 
   async getAllBooks(): Promise<BookDto[]> {
 
-    const booksPath = await firstValueFrom(this.ThirdPartyAPI.send<string>('getBookPath', {}))
-
-    console.log('path in gateway', booksPath);
-
-    fs.watchFile(booksPath, async (curr, prev) => {
-      if (curr.mtime !== prev.mtime) {
-        console.log('File changed');
-        const readyBooks = await firstValueFrom(this.ThirdPartyAPI.send<BookDto[], BookDto[]>('getBooks', {} as BookDto[]));
-        readyBooks.forEach((book) => {
-          console.log(book);
-          this.DataBase.send<BookDto, BookDto>('createBook', book).subscribe();
-        })
-
-
-      }
-    });
-
     const readyBooks = await firstValueFrom(this.ThirdPartyAPI.send<BookDto[], BookDto[]>('getBooks', {} as BookDto[]));
 
     readyBooks.forEach((book) => {
-      // console.log(book);
       this.DataBase.send<BookDto, BookDto>('createBook', book).subscribe();
     })
 
-    // return this.ThirdPartyAPI.send<BookDto[], BookDto[]>('getBooks', {} as BookDto[])
     return readyBooks;
   }
 

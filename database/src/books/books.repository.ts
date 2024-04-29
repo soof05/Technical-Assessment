@@ -13,7 +13,6 @@ export class BooksRepository {
 
   async createBook(book: Book): Promise<Book> {
     const newBook = new this.bookModel(book);
-    console.log('new book added', newBook, '-------')
     return newBook.save();
   }
 }
